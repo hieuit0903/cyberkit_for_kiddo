@@ -87,3 +87,7 @@ mrb34n /ZED/bash
 cryCry /ZED/bash
 test01 /ZED/bash
 ```
+```
+\\ Outbound Connection Monitor
+netstat -nputw
+```
