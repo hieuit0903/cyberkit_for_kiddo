@@ -87,7 +87,15 @@ mrb34n /ZED/bash
 cryCry /ZED/bash
 test01 /ZED/bash
 ```
+- Network Monitor:
 ```
-\\ Outbound Connection Monitor
+\\ Outbound Connection Monitor:
 netstat -nputw
+```
+- Iptables:
+```
+\\ Block Outbound connection:
+sudo iptables -A OUTPUT -p tcp -d <IP> -j DROP
+\\ Display Outbound Rule:
+sudo iptables -L OUTPUT -n -v
 ```
