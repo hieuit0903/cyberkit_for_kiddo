@@ -1,5 +1,5 @@
-# Linux Fundamental:
-**Some system information command:**
+# Linux Fundamental
+**Some system information command**
 ```
 uname -r
 whoami
@@ -15,7 +15,7 @@ lsof
 lspci
 ```
 
-**Find Files and Directories:**
+**Find Files and Directories**
 ```
 $ which python3
 $ find / -type f -name *.conf -user root -size +20k -newermt 2020-03-03 -exec ls -al {} \; 2>/dev/null
@@ -23,7 +23,7 @@ $ locate *.conf
 $ find / -perm -4000 -type f -user root 2>/dev/null
 ```
 
-**Filter Contents:**
+**Filter Contents**
 ```
 $ cat /etc/passwd | more
 $ less /etc/passwd
@@ -88,12 +88,29 @@ mrb34n /ZED/bash
 cryCry /ZED/bash
 test01 /ZED/bash
 ```
-**Network Monitor:**
+**Package Management**
+```
+### View the repository list:
+$ cat /etc/apt/sources.list.d/parrot.list
+
+### Using apt to search packages:
+$ apt-cache search <package_name>
+
+### Using apt to view additional information about a package:
+$ apt-cache show <package_name>
+
+### Using apt to list all installed packages:
+$ apt list --installed
+
+### Using dpkg to install the package:
+$ dpkg -i <file_name.deb> 
+```
+**Network Monitor**
 ```
 ### Outbound Connection Monitor:
 $ netstat -nputw
 ```
-**Iptables:**
+**Iptables**
 ```
 ### Block Outbound connection:
 $ sudo iptables -A OUTPUT -p tcp -d <IP> -j DROP
