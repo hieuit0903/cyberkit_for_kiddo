@@ -1,5 +1,7 @@
 # Windows Fundamentals
 **File System:**
+
+A full listing of icacls command-line arguments and detailed permission: [icacls](https://ss64.com/nt/icacls.html)
 ```
 ###  List out the NTFS permissions on a specific directory:
 %> icacls <path_to_folder>
