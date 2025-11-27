@@ -1,5 +1,35 @@
 # Windows Fundamentals
-**File System:**
+
+**Basic CLI**
+```
+### Printout of the entire path and subdirectories and file in each dir
+%> tree /F <Dest_Path>
+
+### Finding our place
+%> chdir
+%> cd
+
+### Create files:
+%> echo Check out this text > demo.txt
+%> fsutil file createNew file-name.txt 222
+
+### Rename files:
+%> ren demo.txt superdemo.txt
+
+### Delete files:
+%> del <file-name>
+%> erase <file-1> <file-2>
+
+### Delete Directories
+%> rd <Path>
+%> rmdir <Path>
+%> rd /S <Path>
+
+### Show history command
+%> doskey /history
+
+```
+**File System**
 
 A full listing of icacls command-line arguments and detailed permission: [icacls](https://ss64.com/nt/icacls.html)
 ```
