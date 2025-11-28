@@ -2,6 +2,9 @@
 
 Check more basic command for [Windows Fundamentals](https://github.com/hieuit0903/cyberkit_for_kiddo/tree/main/Windows%20Fundamentals)
 
+**More tools**
+- [WinPeas](https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS) - These automated enumeration tools are designed to uncover misconfigurations and vulnerabilities that could lead to higher privilege access.
+
 **Methodology**
 
 The goal of host enumeration is to provide an overall picture of the target host, its environment, and how it interacts with other systems across the network.<br>
