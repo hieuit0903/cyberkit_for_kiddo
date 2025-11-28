@@ -1,6 +1,19 @@
 # Windows Fundamentals
 
-**Basic CLI**
+**Environment Variables**
+
+Check more about [Windows Environment Variables List](https://ss64.com/nt/syntax-variables.html)
+```
+### View Variables
+%> set <env_name>
+%> echo <env_name>
+
+### set, and remove environment variables
+%> set <env_name>=<value>
+%> setx <env_name> <value>
+%> setx <env_name> ""
+```
+**Working with Files/Directories**
 ```
 ### Printout of the entire path and subdirectories and file in each dir
 %> tree /F <Dest_Path>
@@ -27,8 +40,22 @@
 
 ### Show history command
 %> doskey /history
-
 ```
+**Finding Files and Directories**
+```
+### searching for files and applications on the host
+%> where <filename>
+%> where /R <path> <filename>
+
+### find content of the file
+%> find "<keyword>" "<path/to/file>"
+%> findstr
+
+### Compare file
+%> comp <file1> <file2>
+%> fc <file1> <file2> /N
+```
+
 **File System**
 
 A full listing of icacls command-line arguments and detailed permission: [icacls](https://ss64.com/nt/icacls.html)
@@ -55,6 +82,12 @@ A full listing of icacls command-line arguments and detailed permission: [icacls
 ```
 **Service Permissions**
 ```
+### Query All Active Services
+%> tasklist /svc
+%> net start
+%> wmic service list brief
+%> sc query type= service
+
 ### Examining services:
 %> sc qc <service_name>
 
@@ -98,4 +131,19 @@ PS %> Get-MpComputerStatus
 ### Use Run or RunOnce registry keys to make a program run when a user logs on:
 PS %> reg query HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
 PS %> reg query HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+```
+
+**Working With Scheduled Tasks**
+```
+### view the tasks that already exist
+%> schtasks /Query /V /FO list
+
+### create a task
+%> schtasks /create /sc ONSTART /tn "Name of Task" /tr "Command Execution"
+
+### query for the specific task
+%> schtasks /query /tn "Name of Task" /V /fo list
+
+### delete the scheduled task
+schtasks /delete  /tn "Name of Task" 
 ```
