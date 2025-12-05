@@ -1,8 +1,8 @@
 # Windows Fundamentals
 
 **Menu**
-- [CMD](https://github.com/hieuit0903/cyberkit_for_kiddo/edit/main/Windows%20Fundamentals/README.md#cmd)
-- [Powershell](https://github.com/hieuit0903/cyberkit_for_kiddo/edit/main/Windows%20Fundamentals/README.md#powershell)
+- [CMD](https://github.com/hieuit0903/cyberkit_for_kiddo/tree/main/Windows%20Fundamentals#cmd)
+- [Powershell](https://github.com/hieuit0903/cyberkit_for_kiddo/tree/main/Windows%20Fundamentals#powershell)
 # CMD
 
 **Methodology**
