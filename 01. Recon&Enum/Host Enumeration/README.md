@@ -1,5 +1,6 @@
 # Host Enumeration
 **Methodology**
+
 System enumeration is a critical process where we gather detailed information about the compromised system. This information helps identify potential privilege escalation vectors, sensitive data, and system weaknesses. It allows us to understand the target environment thoroughly, which is essential for further steps. The goal here is to understand the system’s setup-how it is structured, what purpose it serves, what it does specifically, and what the implications are. Moreover, host enumeration is to provide an overall picture of the target host, its environment, and how it interacts with other systems across the network<br>
 
 # Windows Host
