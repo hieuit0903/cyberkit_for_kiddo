@@ -40,3 +40,8 @@ $ gobuster vhost -u http|https://<domain_name>:[port] -w <path_to_wordlist> --ap
 $ gobuster dns -d <domain_name> -w <path_to_wordlist>
 $ ffuf -w <path_to_wordlist> -u https://SERVER_IP/ -H "Host:FUZZ.domain.xyz"
 ```
+
+**Attack Fuzzing**
+```
+$ ffuf -w /usr/share/wordlists/SecLists/Fuzzing/command-injection-commix.txt -u http://SERVER_IP:Port/ -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "param=FUZZ"
+```
