@@ -28,6 +28,12 @@
 # Bash - Brute Forcing User RIDs
 for i in $(seq 500 1100);do rpcclient -N -U "" <Server_IP> -c "queryuser 0x$(printf '%x\n' $i)" | grep "User Name\|user_rid\|group_rid" && echo "";done
 ```
+```
+# Enum4Linux-ng - Installation
+$ git clone https://github.com/cddmp/enum4linux-ng.git
+$ cd enum4linux-ng
+$ pip3 install -r requirements.txt
+```
 
 **Dangerous Settings**
 
