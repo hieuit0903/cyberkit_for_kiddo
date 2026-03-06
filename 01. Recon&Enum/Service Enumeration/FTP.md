@@ -29,3 +29,14 @@
 |wget -m --no-passive ftp://username:password@<Server_IP>|Download All Available Files|
 |ftp> put <file_name>|Upload a File|
 
+**Dangerous Settings**
+- With the standard FTP client (ftp), we can access the FTP server accordingly and log in with the anonymous user if the settings shown below have been used. The use of the anonymous account can occur in internal environments and infrastructures where the participants are all known. Access to this type of service can be set temporarily or with the setting to accelerate the exchange of files.<br>
+
+|Setting|Description|
+|:----|:----|
+|anonymous_enable=YES|Allowing anonymous login?|
+|anon_upload_enable=YES|Allowing anonymous to upload files?|
+|anon_mkdir_write_enable=YES|Allowing anonymous to create new directories?|
+|no_anon_password=YES|Do not ask anonymous for password?|
+|anon_root=/home/username/ftp|Directory for anonymous.|
+|write_enable=YES|Allow the usage of FTP commands: STOR, DELE, RNFR, RNTO, MKD, RMD, APPE, and SITE?|
