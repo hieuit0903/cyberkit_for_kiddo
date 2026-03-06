@@ -7,6 +7,8 @@
 **SMB Enumeration Cheat Sheet**
 |Key/Command|Description|
 |:----|:----|
+|smbclient -N -L //<Server_IP>|SMBclient - Connecting to the Share|
+|smbclient //<Server_IP>/path|SMBclient - Connecting to the Specific Share|
 |sudo nmap <Server_IP> -sV -sC -p139,445|Nmap|
 |rpcclient -U "" <Server_IP>|Using RPCclient - Anonymous login|
 |rpcclient $> srvinfo|RPCclient Enumeration - Server information.|
@@ -21,3 +23,24 @@
 |smbmap -H <Server_IP>|Using SMBmap|
 |crackmapexec smb <Server_IP> --shares -u '' -p ''|Using CrackMapExec|
 |./enum4linux-ng.py <Server_IP> -A|Using Enum4Linux-ng|
+
+```
+# Bash - Brute Forcing User RIDs
+for i in $(seq 500 1100);do rpcclient -N -U "" <Server_IP> -c "queryuser 0x$(printf '%x\n' $i)" | grep "User Name\|user_rid\|group_rid" && echo "";done
+```
+
+**Dangerous Settings**
+
+|Setting|Description|
+|:----|:----|
+|browseable = yes|Allow listing available shares in the current share?|
+|read only = no|Forbid the creation and modification of files?|
+|writable = yes|Allow users to create and modify files?|
+|guest ok = yes|Allow connecting to the service without using a password?|
+|enable privileges = yes|Honor privileges assigned to specific SID?|
+|create mask = 0777|What permissions must be assigned to the newly created files?|
+|directory mask = 0777|What permissions must be assigned to the newly created directories?|
+|logon script = script.sh|What script needs to be executed on the user's login?|
+|magic script = script.sh|Which script should be executed when the script gets closed?|
+|magic output = script.out|Where the output of the magic script needs to be stored?|
+
