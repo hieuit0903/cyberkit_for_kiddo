@@ -43,7 +43,7 @@
 |dig +trace abc.com|Shows the full path of DNS resolution.|
 |dig +short abc.com|Provides a short, concise answer to the query.|
 |dig +noall +answer abc.com|Displays only the answer section of the query output.|
-|dig abc.com [A\|AAA\|AAAA\|MX\|TXT\NS]|Retrieves record for the domain.|
+|dig abc.com [A\|AAA\|AAAA\|MX\|TXT\|NS]|Retrieves record for the domain.|
 |dnsenum --dnsserver <Server_IP> --enum -p 0 -s 0 -o subdomains.txt -f /opt/useful/seclists/Discovery/DNS/subdomains-top1million-110000.txt abc.com|Using DNSenum for Subdomain Brute Forcing|
 ```
 # Bash - Subdomain Brute Forcing
