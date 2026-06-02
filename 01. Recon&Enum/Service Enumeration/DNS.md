@@ -40,8 +40,24 @@
 |dig any abc.com @<Server_IP>|DIG - ANY Query (option ANY to view all available records)|
 |dig axfr abc.com @<Server_IP>|DIG - AXFR Zone Transfer|
 |dig axfr internal.abc.com @<Server_IP>|DIG - AXFR Zone Transfer - Internal|
+|dig +trace abc.com|Shows the full path of DNS resolution.|
+|dig +short abc.com|Provides a short, concise answer to the query.|
+|dig +noall +answer abc.com|Displays only the answer section of the query output.|
+|dig abc.com [A\|AAA\|AAAA\|MX\|TXT\NS]|Retrieves record for the domain.|
 |dnsenum --dnsserver <Server_IP> --enum -p 0 -s 0 -o subdomains.txt -f /opt/useful/seclists/Discovery/DNS/subdomains-top1million-110000.txt abc.com|Using DNSenum for Subdomain Brute Forcing|
 ```
 # Bash - Subdomain Brute Forcing
 for sub in $(cat /opt/useful/seclists/Discovery/DNS/subdomains-top1million-110000.txt);do dig $sub.abc.com @<Server_IP> | grep -v ';\|SOA' | sed -r '/^\s*$/d' | grep $sub | tee -a subdomains.txt;done
 ```
+
+**More Tools:**
+- DNS reconnaissance involves utilizing specialized tools designed to query DNS servers and extract valuable information. Here are some of the most popular and versatile tools in the arsenal of web recon professionals:
+
+|Tool|Key Features|Use Cases|
+|:----|:----|:----|
+|nslookup|Simpler DNS lookup tool, primarily for A, AAAA, and MX records.|Basic DNS queries, quick checks of domain resolution and mail server records.|
+|host|Streamlined DNS lookup tool with concise output.|Quick checks of A, AAAA, and MX records.|
+|fierce|DNS reconnaissance and subdomain enumeration tool with recursive search and wildcard detection.|User-friendly interface for DNS reconnaissance, identifying subdomains and potential targets.|
+|dnsrecon|Combines multiple DNS reconnaissance techniques and supports various output formats.|Comprehensive DNS enumeration, identifying subdomains, and gathering DNS records for further analysis.|
+|theHarvester|OSINT tool that gathers information from various sources, including DNS records (email addresses).|Collecting email addresses, employee information, and other data associated with a domain from multiple sources.|
+|Online DNS Lookup Services|User-friendly interfaces for performing DNS lookups.|Quick and easy DNS lookups, convenient when command-line tools are not available, checking for domain availability or basic information|
