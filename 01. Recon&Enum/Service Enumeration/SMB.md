@@ -7,7 +7,7 @@
 **SMB Enumeration Cheat Sheet**
 |Key/Command|Description|
 |:----|:----|
-|smbclient -N -L //<Server_IP>|SMBclient - Connecting to the Share|
+|smbclient -N -L //<Server_IP>|SMBclient - Connecting null session to the Share|
 |smbclient //<Server_IP>/path|SMBclient - Connecting to the Specific Share|
 |sudo nmap <Server_IP> -sV -sC -p139,445|Nmap|
 |rpcclient -U "" <Server_IP>|Using RPCclient - Anonymous login|
@@ -21,7 +21,11 @@
 |rpcclient $> querygroup <Group_RID>|RPCclient Enumeration - Group Information.|
 |samrdump.py <Server_IP>|Using Impacket - Samrdump.py|
 |smbmap -H <Server_IP>|Using SMBmap|
+|smbmap -H <Server_IP> -r <Path/to/Folder>|Using SMBMap recursive the directory|
+|smbmap -H <Server_IP> --download "<Path/to/file>"|Using SMBMap download the files|
+|smbmap -H <Server_IP> --upload <file/need/to/upload> "<Path/to/file>"|Using SMBMap upload the files|
 |crackmapexec smb <Server_IP> --shares -u '' -p ''|Using CrackMapExec|
+|crackmapexec smb <Server_IP> -u /tmp/userlist.txt -p 'Company01!' --local-auth|Using CrackMapExec for password sparying|
 |./enum4linux-ng.py <Server_IP> -A|Using Enum4Linux-ng|
 
 ```
