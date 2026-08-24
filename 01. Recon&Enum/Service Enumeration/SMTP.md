@@ -8,6 +8,8 @@
 |sudo nmap <Server_IP> -sC -sV -p25|Using Nmap|
 |sudo nmap <Server_IP> -p25 --script smtp-open-relay -v|Using Nmap - Open Relay|
 |smtp-user-enum -M RCPT -U userlist.txt -D <Domain_Name> -t <Server_IP>|Using smtp-user-enum to enumerate the username|
+|host -t MX <domain_name>|Using Host - MX Records|
+|dig mx <domain_name>|Using DIG - MX Records|
 
 **Interact with the SMTP server**
 - To interact with the SMTP server, we can use the telnet tool to initialize a TCP connection with the SMTP server. The actual initialization of the session is done with the command mentioned below, HELO or EHLO.
